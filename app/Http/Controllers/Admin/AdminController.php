@@ -94,8 +94,8 @@ class AdminController extends Controller
      */
     public function destroy(User  $admin)
     {
-        $admin->delete();
+      $admin->delete();
 
-        return redirect()->route('admins.index')->withStatus(__('Admin successfully deleted.'));
+      return redirect()->route('admins.index')->withStatus(__('Admin successfully deleted.'));
     }
 }

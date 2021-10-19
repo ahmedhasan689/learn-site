@@ -23,7 +23,7 @@
 
       <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'Admin-management') ? ' active' : '' }}">
         <a class="nav-link" data-toggle="collapse" href="#laravelExample" aria-expanded="true">
-          <i class="material-icons">group</i>
+          <i class="material-icons">admin_panel_settings</i>
           <p>{{ __('Admin') }}
             <b class="caret"></b>
           </p>
@@ -73,20 +73,29 @@
           </ul>
         </div>
       </li>
+
       <li class="nav-item{{ $activePage == 'table' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('table') }}">
-          <i class="material-icons">cloud_queue</i>
+        <a class="nav-link" href="/admin/tracks">
+          <i class="material-icons">add_road</i>
+            <p>{{ __('Tracks') }}</p>
+        </a>
+      </li>
+
+      <li class="nav-item{{ $activePage == 'table' ? ' active' : '' }}">
+        <a class="nav-link" href="{{ route('courses.index') }}">
+          <i class="material-icons">school</i>
             <p>{{ __('Courses') }}</p>
         </a>
       </li>
+
       <li class="nav-item{{ $activePage == 'typography' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('typography') }}">
+        <a class="nav-link" href="{{ route('videos.index') }}">
           <i class="material-icons">play_circle_filled</i>
             <p>{{ __('Videos') }}</p>
         </a>
       </li>
       <li class="nav-item{{ $activePage == 'icons' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('icons') }}">
+        <a class="nav-link" href="{{ route('quiz.index') }}">
           <i class="material-icons">quiz</i>
           <p>{{ __('Quizzes') }}</p>
         </a>

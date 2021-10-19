@@ -15,7 +15,7 @@ class Owner
      */
     public function handle($request, Closure $next)
     {
-        // The Owner : Ahmed -> hlhatab@gmail.com
+        // The Owner : Ahmed -> admin@material.com'
         $user = auth()->user();
 
         if(strtolower($user->email) == 'hlhatab@gmail.com'){

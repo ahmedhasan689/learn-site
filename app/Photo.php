@@ -9,6 +9,8 @@ class Photo extends Model
     protected $table = 'photoable';
     protected $fillable = [
         'filename',
+        'photoable_id',
+        'photoable_type',
     ];
 
     public function photoable() {

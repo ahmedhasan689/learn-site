@@ -61,7 +61,7 @@ $factory->define(Photo::class, function (Faker $faker) {
     $photoable_type = $photoable_id == $userid ? 'App\User' : 'App\Course';
 
     return [
-        'filename' => $faker->name,
+        'filename' => $faker->randomElement(['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg']),
         'photoable_id' => $photoable_id,
         'photoable_type' => $photoable_type,
 
