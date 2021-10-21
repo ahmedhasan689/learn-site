@@ -11,9 +11,10 @@ class Question extends Model
         'answers',
         'right_answer',
         'score',
+        'quiz_id',
     ];
 
-    public function quuiz() {
+    public function quiz() {
         return $this->belongsTo('App\Quiz');
     }
 }

@@ -26,7 +26,7 @@
                 @endif
                 <div class="row">
                   <div class="col-12 text-right">
-                    <a href="{{ route('quiz.create') }}" class="btn btn-sm btn-primary">{{ __('Add Quiz') }}</a>
+                    <a href="/admin/quizzes/{{ $quiz->id }}/questions/create" class="btn btn-sm btn-primary">{{ __('Add Question') }}</a>
                   </div>
                 </div>
                 <div class="table-responsive">
@@ -45,7 +45,7 @@
                         {{ __('Score') }}
                       </th>
                       <th>
-                        {{ __('Updated date') }}
+                        {{ __('Createded date') }}
                       </th>
                       <th class="text-right">
                         {{ __('Actions') }}
@@ -65,6 +65,9 @@
                           </td>
                           <td>
                             {{ $question->score }}
+                          </td>
+                          <td>
+                            {{ $question->created_at->diffForHumans() }}
                           </td>
 
                           <td class="td-actions text-right">

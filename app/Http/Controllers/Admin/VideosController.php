@@ -62,7 +62,7 @@ class VideosController extends Controller
      */
     public function show(Video $video)
     {
-        //
+        return view('admin.videos.show', compact('video'));
     }
 
     /**

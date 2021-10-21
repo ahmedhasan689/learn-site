@@ -55,7 +55,7 @@
                         @foreach($tracks as $track)
                           <tr>
                             <td>
-                              {{ $track->name }}
+                             <a href="{{ route('tracks.show', $track) }}">{{ $track->name }}</a> 
                             </td>
                             <td>
                               {{ $track->created_at->diffForHumans() }}

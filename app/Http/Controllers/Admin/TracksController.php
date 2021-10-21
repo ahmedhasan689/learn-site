@@ -60,7 +60,7 @@ class TracksController extends Controller
      */
     public function show(Track $track)
     {
-        // Return All Courses related To This Track ...
+        return view('admin.tracks.show', compact('track'));
     }
 
     /**

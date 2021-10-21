@@ -101,17 +101,12 @@
         </a>
       </li>
       <li class="nav-item{{ $activePage == 'map' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('map') }}">
+        <a class="nav-link" href="{{ route('questions.index') }}">
           <i class="material-icons">question_answer</i>
             <p>{{ __('Questions') }}</p>
         </a>
       </li>
-      <li class="nav-item{{ $activePage == 'notifications' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('notifications') }}">
-          <i class="material-icons">notifications</i>
-          <p>{{ __('Notifications') }}</p>
-        </a>
-      </li>
+     
 
 
     </ul>
