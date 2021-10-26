@@ -13693,7 +13693,7 @@ h2,
 h3,
 .h3 {
   font-size: 1.5625rem;
-  line-height: 1.4em;
+  line-height: 0.4em;
   margin: 20px 0 10px;
 }
 
@@ -13715,7 +13715,7 @@ h6,
 .h6 {
   font-size: 0.75rem;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 00;
 }
 
 .title,
@@ -16872,7 +16872,7 @@ label {
 .card[class*="bg-"] .card-title a,
 .card[class*="bg-"] .card-title,
 .card[class*="bg-"] .icon i {
-  color: #fff;
+  color: #ffffff;
 }
 
 .card [class*="card-header-"] .icon i,
@@ -18819,4 +18819,4 @@ Copyright (c) 2015 Daniel Eden
   }
 }
 
-/*# sourceMappingURL=dashboard-free.css.map */
+/*# sourceMappingURL=dashboard-free.css.map */map */

@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-      This Is Home Page
-  </body>
-</html>
+@extends('layouts.user_layout')
+
+
+@section('home_picture')
+    @include('includes.home_picture')
+    @include('includes.home_courses')
+    @include('includes.track_famous_courses')
+@endsection

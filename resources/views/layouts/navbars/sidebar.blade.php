@@ -6,7 +6,7 @@
   -->
   <div class="logo">
     <a href="https://creative-tim.com/" class="simple-text logo-normal">
-      {{ __('Learn-Site') }}
+      {{ __('E-Learning') }}
     </a>
   </div>
   <div class="sidebar-wrapper">
@@ -76,7 +76,7 @@
 
       <li class="nav-item{{ $activePage == 'table' ? ' active' : '' }}">
         <a class="nav-link" href="/admin/tracks">
-          <i class="material-icons">add_road</i>
+          <i class="material-icons">trending_up</i>
             <p>{{ __('Tracks') }}</p>
         </a>
       </li>

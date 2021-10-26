@@ -8,17 +8,16 @@
           <div class="card card-stats">
             <div class="card-header card-header-warning card-header-icon">
               <div class="card-icon">
-                <i class="material-icons">content_copy</i>
+                <i class="material-icons">trending_up</i>
               </div>
-              <p class="card-category">Used Space</p>
-              <h3 class="card-title">49/50
-                <small>GB</small>
+              <p class="card-category">Tracks</p>
+              <h3 class="card-title"><a href="/admin/tracks" style="color: #fd9710">{{ $tracks_count }}</a>
+                <small>Tracks</small>
               </h3>
             </div>
             <div class="card-footer">
               <div class="stats">
-                <i class="material-icons text-danger">warning</i>
-                <a href="#pablo">Get More Space...</a>
+                <a href="/admin/tracks"><small>View Quizzes In Site</small></a>
               </div>
             </div>
           </div>
@@ -27,14 +26,17 @@
           <div class="card card-stats">
             <div class="card-header card-header-success card-header-icon">
               <div class="card-icon">
-                <i class="material-icons">store</i>
+                <i class="material-icons">school</i>
               </div>
-              <p class="card-category">Revenue</p>
-              <h3 class="card-title">$34,245</h3>
+              <p class="card-category">Courses</p>
+              <h3 class="card-title">
+                <a href="/admin/courses" style="color: #50aa54">{{ $courses_count }}</a>
+                <small>Course</small>
+              </h3>
             </div>
             <div class="card-footer">
               <div class="stats">
-                <i class="material-icons">date_range</i> Last 24 Hours
+                <a href="/admin/courses"><small>All Courses In Site</small></a>
               </div>
             </div>
           </div>
@@ -43,14 +45,17 @@
           <div class="card card-stats">
             <div class="card-header card-header-danger card-header-icon">
               <div class="card-icon">
-                <i class="material-icons">info_outline</i>
+                <i class="material-icons">group</i>
               </div>
-              <p class="card-category">Fixed Issues</p>
-              <h3 class="card-title">75</h3>
+              <p class="card-category">Users</p>
+              <h3 class="card-title">
+                <a href="/admin/users" style="color: #e9433f">{{ $users_count }}</a>
+                <small>Users</small>
+              </h3>
             </div>
             <div class="card-footer">
               <div class="stats">
-                <i class="material-icons">local_offer</i> Tracked from Github
+              <a href="/admin/users"><small>All Users In Site</small></a>
               </div>
             </div>
           </div>
@@ -59,357 +64,285 @@
           <div class="card card-stats">
             <div class="card-header card-header-info card-header-icon">
               <div class="card-icon">
-                <i class="fa fa-twitter"></i>
+                <i class="material-icons">quiz</i>
               </div>
-              <p class="card-category">Followers</p>
-              <h3 class="card-title">+245</h3>
+              <p class="card-category">Quizzes</p>
+              <h3 class="card-title">
+                <a href="/admin/quiz" style="color: #0fb6cb">{{ $quizzes_count }}</a>
+                <small>Quizzes</small>
+              </h3>
             </div>
             <div class="card-footer">
               <div class="stats">
-                <i class="material-icons">update</i> Just Updated
+                <a href="/admin/quiz"><small>All Quizzes In Site</small></a>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div class="row">
-        <div class="col-md-4">
-          <div class="card card-chart">
-            <div class="card-header card-header-success">
-              <div class="ct-chart" id="dailySalesChart"></div>
-            </div>
-            <div class="card-body">
-              <h4 class="card-title">Daily Sales</h4>
-              <p class="card-category">
-                <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.</p>
-            </div>
-            <div class="card-footer">
-              <div class="stats">
-                <i class="material-icons">access_time</i> updated 4 minutes ago
-              </div>
-            </div>
+        <div class="col-md-6">
+            
+          <div class="card card-chart"> 
+            <div class="card-header card-header-tabs card-header-primary" style="background: linear-gradient(60deg, #ec9f39, #ecc34e)">
+              <h4 style="font-weight: bolder;">Tracks :</h4>
+              <h6 style="font-weight: 300;">Last Tracks In Site</h6> 
+            </div>        
+            @if(count($tracks))
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead class=" text-primary">
+                        <th>
+                            {{ __('Name') }}
+                        </th>
+                        <th>
+                          {{ __('No. Courses') }}
+                        </th>
+                        <th>
+                          {{ __('No. Users') }}
+                        </th>
+                        <th class="text-right">
+                          {{ __('Actions') }}
+                        </th>
+                      </thead>
+                      <tbody>
+
+                        @foreach($tracks as $track)
+                          <tr>
+                            <td>
+                             <a href="{{ route('tracks.show', $track) }}">{{ $track->name }}</a> 
+                            </td>        
+                            <td>
+                              {{ count($track->Courses) }}
+                            </td>
+                            <td>
+                              {{ count(array($track->users)) }}
+                            </td>
+                            <td class="td-actions text-right">
+                                <form action="{{ route('tracks.destroy', $track) }}" method="post">
+                                    @csrf
+                                    @method('delete')
+
+                                    <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('tracks.edit', $track) }}" data-original-title="" title="">
+                                      <i class="material-icons">edit</i>
+                                      <div class="ripple-container"></div>
+                                    </a>
+                                    <button type="button" class="btn btn-danger btn-link" data-original-title="" title="" onclick="confirm('{{ __("Are you sure you want to delete this user?") }}') ? this.parentElement.submit() : ''">
+                                        <i class="material-icons">close</i>
+                                        <div class="ripple-container"></div>
+                                    </button>
+                                </form>
+                            </td>
+                          </tr>
+                        @endforeach
+
+
+                    </tbody>
+                  </table>
+                </div>
+              @else
+              No Track Found
+              @endif
+            
           </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
+          
           <div class="card card-chart">
-            <div class="card-header card-header-warning">
-              <div class="ct-chart" id="websiteViewsChart"></div>
+            <div class="card-header card-header-tabs card-header-primary" style="background: linear-gradient(60deg, #50aa54, #36c261)">
+              <h4 style="font-weight: bolder;">Courses :</h4>
+              <h6 style="font-weight: 300;">Last Courses In Site</h6> 
             </div>
-            <div class="card-body">
-              <h4 class="card-title">Email Subscriptions</h4>
-              <p class="card-category">Last Campaign Performance</p>
-            </div>
-            <div class="card-footer">
-              <div class="stats">
-                <i class="material-icons">access_time</i> campaign sent 2 days ago
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card card-chart">
-            <div class="card-header card-header-danger">
-              <div class="ct-chart" id="completedTasksChart"></div>
-            </div>
-            <div class="card-body">
-              <h4 class="card-title">Completed Tasks</h4>
-              <p class="card-category">Last Campaign Performance</p>
-            </div>
-            <div class="card-footer">
-              <div class="stats">
-                <i class="material-icons">access_time</i> campaign sent 2 days ago
-              </div>
-            </div>
+            @if(count($courses))
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead class=" text-primary">
+                        <th>
+                            {{ __('Name') }}
+                        </th>
+                       
+                        <th>
+                          {{ __('No. Users') }}
+                        </th>
+                        <th>
+                          {{ __('Track Name') }}
+                        </th>
+                        <th class="text-right">
+                          {{ __('Actions') }}
+                        </th>
+                      </thead>
+                      <tbody>
+
+                        @foreach($courses as $course)
+                          <tr>
+                            <td title="{{ $course->title }}">
+                             <a href="{{ route('courses.show', $course) }}">{{ Str::limit($course->title, 15) }}</a> 
+                            </td>  
+                            <td>
+                              {{ count(array($course->users)) }}
+                            </td>
+                            <td>
+                              {{ $course->track->name }}
+                            </td>
+                            <td class="td-actions text-right">
+                                <form action="{{ route('courses.destroy', $course) }}" method="post">
+                                    @csrf
+                                    @method('delete')
+
+                                    <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('courses.edit', $track) }}" data-original-title="" title="">
+                                      <i class="material-icons">edit</i>
+                                      <div class="ripple-container"></div>
+                                    </a>
+                                    <button type="button" class="btn btn-danger btn-link" data-original-title="" title="" onclick="confirm('{{ __("Are you sure you want to delete this user?") }}') ? this.parentElement.submit() : ''">
+                                        <i class="material-icons">close</i>
+                                        <div class="ripple-container"></div>
+                                    </button>
+                                </form>
+                            </td>
+                          </tr>
+                        @endforeach
+
+
+                    </tbody>
+                  </table>
+                </div>
+              @else
+              No Track Found
+              @endif
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-lg-6 col-md-12">
           <div class="card">
-            <div class="card-header card-header-tabs card-header-primary">
+            <div class="card-header card-header-tabs card-header-primary" style="background: linear-gradient(60deg, #e9433f, #e4453d)">
               <div class="nav-tabs-navigation">
                 <div class="nav-tabs-wrapper">
-                  <span class="nav-tabs-title">Tasks:</span>
-                  <ul class="nav nav-tabs" data-tabs="tabs">
-                    <li class="nav-item">
-                      <a class="nav-link active" href="#profile" data-toggle="tab">
-                        <i class="material-icons">bug_report</i> Bugs
-                        <div class="ripple-container"></div>
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#messages" data-toggle="tab">
-                        <i class="material-icons">code</i> Website
-                        <div class="ripple-container"></div>
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#settings" data-toggle="tab">
-                        <i class="material-icons">cloud</i> Server
-                        <div class="ripple-container"></div>
-                      </a>
-                    </li>
-                  </ul>
+                  <h4 style="font-weight: bolder;">Users :</h4>
+                  <h6 style="font-weight: 300;">Last Users In Site</h6>                 
                 </div>
               </div>
             </div>
             <div class="card-body">
-              <div class="tab-content">
-                <div class="tab-pane active" id="profile">
+            <div class="table-responsive">
                   <table class="table">
+                    <thead class=" text-primary">
+                      <th>
+                          {{ __('Name') }}
+                      </th>
+                      <th>
+                        {{ __('Email') }}
+                      </th>
+                      <th>
+                        {{ __('Verified') }}
+                      </th>
+                      <th class="text-right">
+                        {{ __('Actions') }}
+                      </th>
+                    </thead>
                     <tbody>
-                      <tr>
-                        <td>
-                          <div class="form-check">
-                            <label class="form-check-label">
-                              <input class="form-check-input" type="checkbox" value="" checked>
-                              <span class="form-check-sign">
-                                <span class="check"></span>
-                              </span>
-                            </label>
-                          </div>
-                        </td>
-                        <td>Sign contract for "What are conference organizers afraid of?"</td>
-                        <td class="td-actions text-right">
-                          <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                            <i class="material-icons">edit</i>
-                          </button>
-                          <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                            <i class="material-icons">close</i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div class="form-check">
-                            <label class="form-check-label">
-                              <input class="form-check-input" type="checkbox" value="">
-                              <span class="form-check-sign">
-                                <span class="check"></span>
-                              </span>
-                            </label>
-                          </div>
-                        </td>
-                        <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
-                        <td class="td-actions text-right">
-                          <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                            <i class="material-icons">edit</i>
-                          </button>
-                          <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                            <i class="material-icons">close</i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div class="form-check">
-                            <label class="form-check-label">
-                              <input class="form-check-input" type="checkbox" value="">
-                              <span class="form-check-sign">
-                                <span class="check"></span>
-                              </span>
-                            </label>
-                          </div>
-                        </td>
-                        <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
-                        </td>
-                        <td class="td-actions text-right">
-                          <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                            <i class="material-icons">edit</i>
-                          </button>
-                          <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                            <i class="material-icons">close</i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div class="form-check">
-                            <label class="form-check-label">
-                              <input class="form-check-input" type="checkbox" value="" checked>
-                              <span class="form-check-sign">
-                                <span class="check"></span>
-                              </span>
-                            </label>
-                          </div>
-                        </td>
-                        <td>Create 4 Invisible User Experiences you Never Knew About</td>
-                        <td class="td-actions text-right">
-                          <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                            <i class="material-icons">edit</i>
-                          </button>
-                          <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                            <i class="material-icons">close</i>
-                          </button>
-                        </td>
-                      </tr>
+                      @foreach($users as $user)
+                        <tr>
+                          <td>
+                            {{ $user->name }}
+                          </td>
+                          <td>
+                            {{ Str::limit($user->email, 10) }}
+                          </td>
+                          <td>
+                            <?php if ($user->email_verified_at){
+                              echo '<div class="text-success">Verified</div>';
+                            }else{
+                              echo '<div class="text-danger">Not Verified</div>';
+                            }
+                            ?>
+                          </td>
+
+                          <td class="td-actions text-right">
+                            @if ($user->id != auth()->id())
+                              <form action="{{ route('users.destroy', $user) }}" method="post">
+                                  @csrf
+                                  @method('delete')
+
+                                  <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('users.edit', $user) }}" data-original-title="" title="">
+                                    <i class="material-icons">edit</i>
+                                    <div class="ripple-container"></div>
+                                  </a>
+                                  <button type="button" class="btn btn-danger btn-link" data-original-title="" title="" onclick="confirm('{{ __("Are you sure you want to delete this user?") }}') ? this.parentElement.submit() : ''">
+                                      <i class="material-icons">close</i>
+                                      <div class="ripple-container"></div>
+                                  </button>
+                              </form>
+                            @else
+                              <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('profile.edit') }}" data-original-title="" title="">
+                                <i class="material-icons">edit</i>
+                                <div class="ripple-container"></div>
+                              </a>
+                            @endif
+                          </td>
+                        </tr>
+                      @endforeach
                     </tbody>
                   </table>
                 </div>
-                <div class="tab-pane" id="messages">
-                  <table class="table">
-                    <tbody>
-                      <tr>
-                        <td>
-                          <div class="form-check">
-                            <label class="form-check-label">
-                              <input class="form-check-input" type="checkbox" value="" checked>
-                              <span class="form-check-sign">
-                                <span class="check"></span>
-                              </span>
-                            </label>
-                          </div>
-                        </td>
-                        <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
-                        </td>
-                        <td class="td-actions text-right">
-                          <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                            <i class="material-icons">edit</i>
-                          </button>
-                          <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                            <i class="material-icons">close</i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div class="form-check">
-                            <label class="form-check-label">
-                              <input class="form-check-input" type="checkbox" value="">
-                              <span class="form-check-sign">
-                                <span class="check"></span>
-                              </span>
-                            </label>
-                          </div>
-                        </td>
-                        <td>Sign contract for "What are conference organizers afraid of?"</td>
-                        <td class="td-actions text-right">
-                          <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                            <i class="material-icons">edit</i>
-                          </button>
-                          <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                            <i class="material-icons">close</i>
-                          </button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <div class="tab-pane" id="settings">
-                  <table class="table">
-                    <tbody>
-                      <tr>
-                        <td>
-                          <div class="form-check">
-                            <label class="form-check-label">
-                              <input class="form-check-input" type="checkbox" value="">
-                              <span class="form-check-sign">
-                                <span class="check"></span>
-                              </span>
-                            </label>
-                          </div>
-                        </td>
-                        <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
-                        <td class="td-actions text-right">
-                          <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                            <i class="material-icons">edit</i>
-                          </button>
-                          <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                            <i class="material-icons">close</i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div class="form-check">
-                            <label class="form-check-label">
-                              <input class="form-check-input" type="checkbox" value="" checked>
-                              <span class="form-check-sign">
-                                <span class="check"></span>
-                              </span>
-                            </label>
-                          </div>
-                        </td>
-                        <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
-                        </td>
-                        <td class="td-actions text-right">
-                          <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                            <i class="material-icons">edit</i>
-                          </button>
-                          <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                            <i class="material-icons">close</i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div class="form-check">
-                            <label class="form-check-label">
-                              <input class="form-check-input" type="checkbox" value="" checked>
-                              <span class="form-check-sign">
-                                <span class="check"></span>
-                              </span>
-                            </label>
-                          </div>
-                        </td>
-                        <td>Sign contract for "What are conference organizers afraid of?"</td>
-                        <td class="td-actions text-right">
-                          <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                            <i class="material-icons">edit</i>
-                          </button>
-                          <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                            <i class="material-icons">close</i>
-                          </button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
             </div>
           </div>
         </div>
         <div class="col-lg-6 col-md-12">
           <div class="card">
-            <div class="card-header card-header-warning">
-              <h4 class="card-title">Employees Stats</h4>
-              <p class="card-category">New employees on 15th September, 2016</p>
+            <div class="card-header card-header-warning" style="background: linear-gradient(60deg, #0fb6cb, #388dd6)">
+              <h4 style="font-weight: bolder;">Quizzes :</h4>
+              <h6 style="font-weight: 300;">Last Quizzes In Site</h6> 
             </div>
-            <div class="card-body table-responsive">
-              <table class="table table-hover">
-                <thead class="text-warning">
-                  <th>ID</th>
-                  <th>Name</th>
-                  <th>Salary</th>
-                  <th>Country</th>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Dakota Rice</td>
-                    <td>$36,738</td>
-                    <td>Niger</td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>Minerva Hooper</td>
-                    <td>$23,789</td>
-                    <td>Curaçao</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>Sage Rodriguez</td>
-                    <td>$56,142</td>
-                    <td>Netherlands</td>
-                  </tr>
-                  <tr>
-                    <td>4</td>
-                    <td>Philip Chaney</td>
-                    <td>$38,735</td>
-                    <td>Korea, South</td>
-                  </tr>
-                </tbody>
-              </table>
+            <div class="card-body">
+            <div class="table-responsive">
+                  <table class="table">
+                    <thead class=" text-primary">
+                      <th>
+                          {{ __('Name') }}
+                      </th>
+                      <th>
+                          {{ __('No.Question') }}
+                      </th>
+                      <th>
+                        {{ __('Course Name') }}
+                      </th>
+                      <th class="text-right">
+                        {{ __('Actions') }}
+                      </th>
+                    </thead>
+                    <tbody>
+                      @foreach($quizzes as $quiz)
+                        <tr>
+                          <td>
+                            <a href="{{ route('quiz.show', $quiz) }}">{{ Str::limit($quiz->name, 10) }}</a>
+                          </td>
+                          <td>
+                            {{ count($quiz->questions) }}
+                          </td>
+                          <td>
+                            {{ Str::limit($quiz->course->title, 10) }}
+                          </td>
+                          <td class="td-actions text-right">
+
+                              <form action="{{ route('quiz.destroy', $quiz) }}" method="post">
+                                  @csrf
+                                  @method('delete')
+                                  <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('quiz.edit', $quiz) }}" data-original-title="" title="">
+                                    <i class="material-icons">edit</i>
+                                    <div class="ripple-container"></div>
+                                  </a>
+                                  <button type="button" class="btn btn-danger btn-link" data-original-title="" title="" onclick="confirm('{{ __("Are you sure you want to delete this user?") }}') ? this.parentElement.submit() : ''">
+                                      <i class="material-icons">close</i>
+                                      <div class="ripple-container"></div>
+                                  </button>
+                              </form>
+                          </td>
+                        </tr>
+                      @endforeach
+                    </tbody>
+                  </table>
+                </div>
             </div>
           </div>
         </div>
