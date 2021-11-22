@@ -28,19 +28,21 @@
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="sr-only">Next</span>
                     </a>
-                    <a href="#">
+                    <a href="/courses/{{$course->slug}}">
                         @if ($course->photo)
-                        <img src="/images/{{ $course->photo->filename }}" width="700px">
+                        <img src="/images/{{ $course->photo->filename }}">
                         @else
-                        <img src="/images/default.jpg" width="700px">
+                        <img src="/images/default.jpg">
                         @endif
                     </a>
                 </figure>
             </div>
             <div class="col-sm">
-                <a href="#"><h3>{{ $course->title }}</h3></a>
+                <a href="/tracks/{{$course->track->name}}">
+                    <h3>{{ $course->title }}</h3>
+                </a>
                 <br>
-                <a href="#"><h4>{{ $course->track->name }}</h4></a>
+                    <a href="#"><h4>{{ $course->track->name }}</h4></a>
             </div>
         </div>
             

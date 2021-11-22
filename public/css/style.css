@@ -43,14 +43,14 @@ form {
  /* End Navbar Style */
 
  /* Start Header Style */
-.home_picture {
+.content {
     height: 855px;
     background-image: url('../images/header-img.jpg');
     background-repeat: no-repeat;
     background-origin: content-box;
     background-size: contain;
 }
-.home_picture .header_text {
+.content .header_text {
     padding-top: 300px !important;
     padding-left: 40px;
     color: #FFF;
@@ -60,41 +60,41 @@ form {
     align-items: center;
 }
 @media(min-width: 768px) and (max-width: 992px) {
-    .home_picture .header_text {
+    .content .header_text {
         padding-top: 150px !important;
         margin-left: 200px;
     }
 }
 @media(min-width: 567px) and (max-width: 768px){
-    .home_picture .header_text {
+    .content .header_text {
         padding-top: 100px !important;
         font-size: 15px;
     }
 }
 @media(max-width: 567px){
-    .home_picture .header_text {
+    .content .header_text {
         padding-top: 75px !important;
         font-size: 6px;
     }
 }
-.home_picture .header_text h5 {
+.content .header_text h5 {
     font-weight: 600;
     font-size: 34px;
 }
-.home_picture .header_text h5 span {
+.content .header_text h5 span {
     color: #2f6092 !important;
 }
-.home_picture .header_text p {
+.content .header_text p {
     font-size: 18px;
 }
-.home_picture .header_text a {
+.content .header_text a {
     background-color: #2f6092;
     border-radius: 5px;
     padding: 10px 20px;
     width: 150px;
 }
-.home_picture .header_text a:hover, 
-.home_picture .header_text a:focus {
+.content .header_text a:hover, 
+.content .header_text a:focus {
     background-color: #2f6192b0;
     box-shadow: none;
 }
@@ -113,20 +113,23 @@ form {
 }
 .carousel-inner .col-sm {
     margin-top: 100px;
-    margin-left: -140px;
+    margin-left: 100px;
+    font-size: 20px;
 }
 .carousel-inner .col-sm h4 {
     margin-left: -175px;
 }
 .text-header {
-    margin: 20px 150px;
+    margin: -12px 150px;
 }
 .text-header h4{
     display: inline-block;
+    margin-left: -25px; 
 }
 .text-header a {
     font-size: 17px;   
     margin-top: 5px; 
+    margin-left: 100px; 
     float: right;
     text-decoration: none;
 }
@@ -233,6 +236,10 @@ footer .text-reset {
 /* End Footer Style */
 
 /* Start recommended_courses Style */
+.recommended_courses {
+    margin-top: 250px;
+    margin-left: -555px;
+}
 .recommended_courses .course .course-img{
     width: 100%;
 }
@@ -251,3 +258,87 @@ footer .text-reset {
     margin-top: 32px;
 }
 /* End recommended_courses Style */
+
+/* Start Single-Course Style */
+.course-head {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    background-color: #BBB;
+    /* padding: 25px; */
+}
+.course-head .row div:nth-child(1){
+    padding: 25px 45px;
+}
+.course-head .row div:nth-child(1) h4 a{
+    text-decoration: none;
+    color: #4242fe;
+}
+.course-head .row div:nth-child(1) h4 a:hover{
+    opacity: .7;
+}
+.course-head .row div:nth-child(1) a{
+    margin-top: 25px;
+}
+.course-head .row div:nth-child(2) img{
+    /* padding: 15px; */
+    width: 100%;
+    height: 100%;
+}
+
+/* End Single-Course Style */
+
+/* Start Single-Course (Videos) Style */
+.videos {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.videos h4 {
+    margin-left: 15px;
+    margin-bottom: 15px;
+}
+.videos .video {
+    padding: 15px 15px 15px 25px;
+    margin-bottom: 15px;
+    background-color: #efefef;
+    transition: 0.4s ease-in-out;
+}
+.videos .video:hover{
+    background-color: #242bff;
+    color: #FFF;
+}
+.videos .video:hover a{
+    color: #FFF;
+}
+.videos .video a {
+    text-decoration: none;
+}
+.videos .video .fa-youtube::before {
+    color: #c4302b;
+    margin-right: 15px;
+    font-size: 18px;
+}
+.videos .video:hover .fa-youtube::before {
+    color: #ffffff;
+}
+/* End Single-Course (Videos) Style */
+
+/* Start Modal Style */
+.modal-content {
+    width: 850px;
+}
+
+
+/* End Modal Style */
+
+/* Start Quizzes Style */
+.quizzes h4 {
+    margin-left: 15px;
+    margin-bottom: 15px;
+}
+.quizzes .quiz {
+    display: inline-block;
+    margin-bottom: 20px;
+}
+.quizzes .quiz button{
+    padding: 10px 18px;
+}

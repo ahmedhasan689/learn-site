@@ -34,6 +34,19 @@
                 </div>
 
                 <div class="row">
+                  <label class="col-sm-2 col-form-label">{{ __('Decsription') }}</label>
+                  <div class="col-sm-7">
+                    <!-- Name -->
+                    <div class="form-group{{ $errors->has('Decsription') ? ' has-danger' : '' }}">
+                      <input class="form-control{{ $errors->has('Decsription') ? ' is-invalid' : '' }}" name="decsription" id="input-Decsription" type="text" placeholder="{{ __('Decsription') }}" required="true" aria-required="true"/>
+                      @if ($errors->has('Decsription'))
+                        <span id="name-error" class="error text-danger" for="input-Decsription">{{ $errors->first('Decsription') }}</span>
+                      @endif
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
                   <label class="col-sm-2 col-form-label">{{ __(' Link') }}</label>
                   <div class="col-sm-7">
                     <div class="form-group{{ $errors->has('link') ? ' has-danger' : '' }}">

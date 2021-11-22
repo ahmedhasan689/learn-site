@@ -24,7 +24,7 @@ class AdminController extends Controller
     public function index()
     {
         $auth_id = Auth::user()->id;
-        $users = User::where('admin', 1)->whereNotIn('id',[$auth_id])->orderBy('id', 'Asc')->paginate(15);
+        $users = User::where('admin', 1)->whereNotIn('id', [$auth_id])->orderBy('id', 'Asc')->paginate(15);
         return view('Admin.admins.index', ['users' => $users]);
     }
     /**

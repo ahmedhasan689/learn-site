@@ -8,7 +8,7 @@
             @foreach($track->courses()->get() as $course)
             <div class="col-sm-3">
                 <div class="track_course">
-                    <a href="#">
+                    <a href="/courses/{{$course->slug}}">
                         @if($course->photo)
                         <img src="/images/{{ $course->photo->filename }}" alt="name">
                         @else
@@ -16,7 +16,7 @@
                         @endif
                     </a>
                     <h6>
-                        <a href="#">{{ \Str::limit($course->title, 15) }}</a>
+                        <a href="/courses/{{$course->slug}}">{{ \Str::limit($course->title, 15) }}</a>
                         <br>
                         <div style="margin-top: 8px">
                             <span class="{{ $course->status == '0' ? 'text-success' : 'text-danger' }}">

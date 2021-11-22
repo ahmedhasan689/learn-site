@@ -1,4 +1,4 @@
-<div class="home_picture">
+<div class="content">
 
     <div class="contanier-fluid">
         <div class="col-lg-12 col-md-6 header_text">

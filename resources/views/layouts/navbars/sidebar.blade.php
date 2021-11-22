@@ -45,9 +45,8 @@
             </li>
           </ul>
         </div>
-
       </li>
-
+      
       @endif
       <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }}">
         <a class="nav-link" data-toggle="collapse" href="#User">

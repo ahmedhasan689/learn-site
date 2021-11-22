@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,44 +14,18 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index')->name('home');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+// Route::get('/login', 'LoginController@index')->middleware('auth');
 
-Route::group(['middleware' => 'auth'], function () {
-	Route::get('table-list', function () {
-		return view('pages.table_list');
-	})->name('table');
+Route::get('/courses/{slug}', 'CourseController@index');
 
-	Route::get('typography', function () {
-		return view('pages.typography');
-	})->name('typography');
 
-	Route::get('icons', function () {
-		return view('pages.icons');
-	})->name('icons');
 
-	Route::get('map', function () {
-		return view('pages.map');
-	})->name('map');
-
-	Route::get('notifications', function () {
-		return view('pages.notifications');
-	})->name('notifications');
-
-	Route::get('rtl-support', function () {
-		return view('pages.language');
-	})->name('language');
-
-	Route::get('upgrade', function () {
-		return view('pages.upgrade');
-	})->name('upgrade');
-});
 
 Route::group(['middleware' => ['auth', 'User']], function () {
 	Route::get('admin', function() {
@@ -71,9 +48,9 @@ Route::group(['middleware' => ['auth', 'User']], function () {
 	Route::resource('admin/quiz', 'Admin\QuizController');
 
 	Route::resource('admin/quizzes.questions', 'Admin\QuizQuestionController');
-	
+
 	Route::resource('admin/questions', 'Admin\QuestionsController');
-  
+
 	Route::resource('admin/courses', 'Admin\CoursesController');
 
 	Route::resource('admin/courses.videos', 'Admin\CourseVideoController');
